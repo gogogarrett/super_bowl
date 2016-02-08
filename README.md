@@ -2,6 +2,8 @@
 
 A simple application to demonstrate how to use the [GenServer](http://elixir-lang.org/getting-started/mix-otp/genserver.html) in an elixir project.
 
+![](https://cloud.githubusercontent.com/assets/873687/12885271/b4bce954-ceb8-11e5-9ab5-3fede15b72dc.png)
+
 # Usage
 
 There are currently two team names, `:team_one` and `:team_two`.
