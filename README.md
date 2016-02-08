@@ -1,20 +1,33 @@
 # SuperBowl
 
-**TODO: Add description**
+A simple application to demonstrate how to use the [GenServer](http://elixir-lang.org/getting-started/mix-otp/genserver.html) in an elixir project.
 
-## Installation
+# Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+There are currently two team names, `:team_one` and `:team_two`.
 
-  1. Add super_bowl to your list of dependencies in `mix.exs`:
+You can simulate the team scoring points with the following API.
 
-        def deps do
-          [{:super_bowl, "~> 0.0.1"}]
-        end
+```elixir
+iex(1)> SuperBowl.Team.touchdown(:team_one)
+:ok
+iex(2)> SuperBowl.Team.free_kick(:team_two)
+:ok
+iex(3)> SuperBowl.Team.two_point_conv(:team_one)
+:ok
+iex(4)> SuperBowl.Team.field_goal(:team_two)
+:ok
+```
 
-  2. Ensure super_bowl is started before your application:
+To see the current score of the game, you can easily print the results for each team with
 
-        def application do
-          [applications: [:super_bowl]]
-        end
+```elixir
+iex(1)> SuperBowl.Leaderboard.print_score(:team_one)
+{:team_one, 7}
+iex(2)> SuperBowl.Leaderboard.print_score(:team_two)
+{:team_two, 10}
+iex(3)> SuperBowl.Leaderboard.print_score
+[team_one: 7, team_two: 10]
+```
 
+After halftime, and fulltime you will get the leaderboards reported to you!

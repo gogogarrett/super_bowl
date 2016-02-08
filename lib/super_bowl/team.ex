@@ -10,14 +10,7 @@ defmodule SuperBowl.Team do
   def free_kick(name),      do: GenServer.cast(name, :free_kick)
   def two_point_conv(name), do: GenServer.cast(name, :two_point_conv)
   def field_goal(name),     do: GenServer.cast(name, :field_goal)
-
-  def print_score(name), do: {name, GenServer.call(name, :get_score)}
-  def print_score do
-    # [g] - does this belong here?
-    Enum.map [:team_one, :team_two], fn (team_name) ->
-      {team_name, GenServer.call(team_name, :get_score)}
-    end
-  end
+  def get_score(name),      do: {name, GenServer.call(name, :get_score)}
 
   # Server
   def init({team_name, state}) do

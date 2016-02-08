@@ -9,10 +9,10 @@ defmodule SuperBowl.Leaderboard do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-  def print_score(name), do: {name, Team.print_score(name)}
+  def print_score(name), do: Team.get_score(name)
   def print_score do
     Enum.map @teams, fn (team_name) ->
-      {team_name, Team.print_score(team_name)}
+      Team.get_score(team_name)
     end
   end
 
@@ -75,14 +75,8 @@ defmodule SuperBowl.Leaderboard do
     {:noreply, state}
   end
 
-  defp team_scores do
-    Enum.map @teams, fn (team_name) ->
-      Team.print_score(team_name)
-    end
-  end
-
   defp format_team_scores do
-    team_scores
+    print_score
     |> Stream.map(fn({k, v}) ->  "#{k} - #{v}" end)
     |> Enum.join("\n")
   end
