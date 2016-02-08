@@ -6,7 +6,7 @@ A simple application to demonstrate how to use the [GenServer](http://elixir-lan
 
 # Usage
 
-There are currently two team names, `:team_one` and `:team_two`.
+There are currently two team names, `:team_one` and `:team_two` (can be configured [here](https://github.com/gogogarrett/super_bowl/blob/master/config%2Fconfig.exs)).
 
 You can simulate the team scoring points with the following API.
 

@@ -2,7 +2,7 @@ defmodule SuperBowl.Leaderboard do
   use GenServer
 
   alias SuperBowl.Team
-  @teams [:team_one, :team_two]
+  @teams Application.get_env(:super_bowl, :teams)
 
   # Client
   def start_link(_) do

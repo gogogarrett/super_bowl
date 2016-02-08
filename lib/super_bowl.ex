@@ -1,15 +1,18 @@
 defmodule SuperBowl do
   use Application
 
+  @teams Application.get_env(:super_bowl, :teams)
+
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    children = [
-      # Define workers and child supervisors to be supervised
-      worker(SuperBowl.Team, [:team_one, %{}], id: 1),
-      worker(SuperBowl.Team, [:team_two, %{}], id: 2),
+    team_workers = Enum.map @teams, fn (team_name) ->
+      worker(SuperBowl.Team, [team_name, %{}], id: team_name)
+    end
+
+    children = team_workers ++ [
       worker(SuperBowl.Leaderboard, [[]]),
     ]
 
