@@ -74,7 +74,9 @@ defmodule SuperBowl.Leaderboard do
     """
     {:noreply, state}
   end
-
+  
+  defp handle_info(_, state), do: nil
+  
   defp format_team_scores do
     print_score
     |> Stream.map(fn({k, v}) ->  "#{k} - #{v}" end)
